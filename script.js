@@ -12,4 +12,28 @@ document.getElementById("mapa").addEventListener("click", (e) => {
         }
 });
 
-const a = 'teste'
+function gerarMatriz(m){
+    var matriz = []
+
+    for(let i=0;i<m;i++)
+    {
+        matriz[i] = [0,0,0]
+    }
+
+    return matriz
+}
+
+function geraPosicaoAleatoria(min, max)
+{
+    var numero = 0
+
+    do{
+        numero = Math.floor(((Date.now() * Math.random() % (max + 1))))
+    }while((numero < min) || (numero > max))
+    
+    return numero
+}
+
+console.log(geraPosicaoAleatoria(0,2) + 'linha')
+
+console.log(geraPosicaoAleatoria(0,2) + 'coluna')
