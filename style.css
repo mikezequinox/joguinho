@@ -1,0 +1,34 @@
+#mapa {
+    width: 600px;
+    height: 600px;
+    background: url('https://img.freepik.com/free-vector/old-treasure-map-background_1419-1515.jpg') no-repeat center center;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 2px;
+    border: 5px solid #8B4513;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+.celula {
+    width: 50px;
+    height: 50px;
+    background: rgba(139, 69, 19, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    border: 1px solid #654321;
+}
+.celula:hover {
+    background: rgba(205, 133, 63, 0.9);
+}
+#dicas {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #8B4513;
+    text-align: center;
+}
