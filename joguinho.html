@@ -1,15 +1,69 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body> 
-        <div id="mapa" style="width: 500px; height: 500px; background: lightgreen; position: relative">
-            <div id="tesouro" style="position: absolute; width: 20px; height: 20px; background: gold; top: 100px; left: 200px"></div>
-        </div>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #mapa {
+            width: 450px;
+            height: 450px;
+            background: url('https://img.freepik.com/free-vector/old-treasure-map-background_1419-1515.jpg') no-repeat center center;
+            background-size: cover;
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            grid-template-rows: repeat(9, 1fr);
+            gap: 2px;
+            border: 5px solid #8B4513;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        .celula {
+            width: 50px;
+            height: 50px;
+            background: rgba(139, 69, 19, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            cursor: pointer;
+            border: 1px solid #654321;
+        }
+        .celula:hover {
+            background: rgba(205, 133, 63, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div id="mapa"></div>
+    <script>
+        const mapa = document.getElementById("mapa");
+        let tesouroX = Math.floor(Math.random() * 9);
+        let tesouroY = Math.floor(Math.random() * 9);
 
-        <script src="script.js"></script>
-    </body>
+        for (let i = 0; i < 9; i++) {
+            for (let j = 0; j < 9; j++) {
+                let celula = document.createElement("div");
+                celula.classList.add("celula");
+                celula.dataset.x = i;
+                celula.dataset.y = j;
+                celula.addEventListener("click", function () {
+                    let distancia = Math.abs(i - tesouroX) + Math.abs(j - tesouroY);
+                    if (distancia === 0) {
+                        this.style.background = "gold";
+                        alert("Você achou o tesouro!");
+                    } else if (distancia <= 2) {
+                        alert("Está muito quente!");
+                    } else if (distancia <= 4) {
+                        alert("Está morno!");
+                    } else {
+                        alert("Está frio... continue procurando!");
+                    }
+                });
+                mapa.appendChild(celula);
+            }
+        }
+    </script>
+</body>
 </html>
+
 
 
