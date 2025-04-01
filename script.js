@@ -1,39 +1,27 @@
-document.getElementById("mapa").addEventListener("click", (e) => {
-    const tesouro = document.getElementById("tesouro");
-    const distancia = Math.sqrt(
-    Math.pow(e.clientX- tesouro.offsetLeft, 2) + Math.pow(e.clientY- tesouro.offsetTop, 2));
-    
-    if (distancia < 20) {
-            alert("Voc achou o tesouro!");
-        } else if (distancia < 50) {
-            alert("Est muito quente!");
-        } else {
-            alert("Est frio... continue procurando!");
-        }
-});
+const mapa = document.getElementById("mapa");
+const dicas = document.getElementById("dicas");
+let tesouroX = Math.floor(Math.random() * 12);
+let tesouroY = Math.floor(Math.random() * 12);
 
-function gerarMatriz(m){
-    var matriz = []
-
-    for(let i=0;i<m;i++)
-    {
-        matriz[i] = [0,0,0]
+for (let i = 0; i < 12; i++) {
+    for (let j = 0; j < 12; j++) {
+        let celula = document.createElement("div");
+        celula.classList.add("celula");
+        celula.dataset.x = i;
+        celula.dataset.y = j;
+        celula.addEventListener("click", function () {
+            let distancia = Math.abs(i - tesouroX) + Math.abs(j - tesouroY);
+            if (distancia === 0) {
+                this.style.background = "gold";
+                dicas.innerText = "🏆 Você achou o tesouro! Parabéns!";
+            } else if (distancia <= 2) {
+                dicas.innerText = "🔥 Está muito quente! O tesouro está por perto!";
+            } else if (distancia <= 4) {
+                dicas.innerText = "🌡️ Está morno! Continue procurando!";
+            } else {
+                dicas.innerText = "❄️ Está frio... O tesouro está longe!";
+            }
+        });
+        mapa.appendChild(celula);
     }
-
-    return matriz
 }
-
-function geraPosicaoAleatoria(min, max)
-{
-    var numero = 0
-
-    do{
-        numero = Math.floor(((Date.now() * Math.random() % (max + 1))))
-    }while((numero < min) || (numero > max))
-    
-    return numero
-}
-
-console.log(geraPosicaoAleatoria(0,2) + 'linha')
-
-console.log(geraPosicaoAleatoria(0,2) + 'coluna')
