@@ -11,3 +11,5 @@ document.getElementById("mapa").addEventListener("click", (e) => {
             alert("Est frio... continue procurando!");
         }
 });
+
+const a = 'teste'
