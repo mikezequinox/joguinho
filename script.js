@@ -1,27 +1,31 @@
-document.getElementById("mapa").addEventListener("click", (e) => {
-    const tesouro = document.getElementById("tesouro");
-    const distancia = Math.sqrt(
-    Math.pow(e.clientX- tesouro.offsetLeft, 2) + Math.pow(e.clientY- tesouro.offsetTop, 2));
-    
-    if (distancia < 20) {
-            alert("Voc achou o tesouro!");
-        } else if (distancia < 50) {
-            alert("Est muito quente!");
-        } else {
-            alert("Est frio... continue procurando!");
-        }
-});
+const mapa = document.getElementById("mapa")
+const linhaTesouro = geraPosicaoAleatoria(0,8)
+const colunaTesouro = geraPosicaoAleatoria(0,8)
 
-function gerarMatriz(m){
-    var matriz = []
-
-    for(let i=0;i<m;i++)
+console.log(linhaTesouro, colunaTesouro)
+for (let i = 0; i < 9; i++)
+{
+    for (let j = 0; j < 9; j++)
     {
-        matriz[i] = [0,0,0]
+        let celula = document.createElement("div")
+        celula.classList.add("celula")
+        celula.dataset.x = i
+        celula.dataset.y = j
+       
+        mapa.appendChild(celula)
+        
+        celula.addEventListener('click', function() {
+            if((celula.dataset.x == linhaTesouro) && (celula.dataset.y == colunaTesouro))
+            {
+                celula.style.background = "url('tesouro.jpg')";
+                celula.style.backgroundSize = 'cover';
+            }
+            else
+                celula.style.background = 'rgba(255, 0, 0, 0.7)'
+        })
     }
-
-    return matriz
 }
+
 
 function geraPosicaoAleatoria(min, max)
 {
@@ -34,6 +38,3 @@ function geraPosicaoAleatoria(min, max)
     return numero
 }
 
-console.log(geraPosicaoAleatoria(0,2) + 'linha')
-
-console.log(geraPosicaoAleatoria(0,2) + 'coluna')

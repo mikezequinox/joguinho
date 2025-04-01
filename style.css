@@ -1,0 +1,25 @@
+#mapa {
+    max-width: fit-content;
+    max-height: fit-content;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    gap: 2px;
+    border: 5px solid #8B4513;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.celula {
+    width: 50px;
+    height: 50px;
+    background: url('https://img.freepik.com/free-vector/old-treasure-map-background_1419-1515.jpg');
+    background-size: cover; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    border: 1px solid #654321;
+}
